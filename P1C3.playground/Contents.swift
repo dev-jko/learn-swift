@@ -1,5 +1,5 @@
 import UIKit
-
+import Swift
 
 /// Int, UInt
 print("- Int, UInt ------------------")
@@ -38,4 +38,17 @@ print("-------------------------------")
 
 
 /// Float, Double
+var floatValue: Float = 1234567890.1
+let doubleValue: Double = 1234567890.1
+print("float : \(floatValue), double : \(doubleValue)")
+
+floatValue = 123456.1
+print(floatValue)
+
+print(Int.random(in: -100...100))
+print("-------------------------------")
+
+
+
+
 
