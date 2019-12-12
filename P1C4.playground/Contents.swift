@@ -42,3 +42,43 @@ let eric: PersonTuple = ("eric", 101, 200)
 
 
 
+/// Collection
+/// Array
+var names: Array<String> = ["nadarm", "chulsoo", "younghee", "yagom", "nadarm"]
+var names2: [String] = ["nadarm", "chulsoo", "younghee", "yagom", "nadarm"]
+
+var emptyArray: [Any] = [Any]()
+var emptyArray2: [Any] = Array<Any>()
+
+var emptyArray3: [Any] = []
+print(emptyArray.isEmpty)
+print(names.count)
+
+print(names[2])
+names[2] = "jenny"
+print(names[2])
+// print(names[5])  // error
+// names[5] = "elsa" // error
+
+names.append("elsa")
+names.append(contentsOf: ["john", "max"])
+names.insert("happy", at: 2)
+names.insert(contentsOf: ["jinhee", "minsoo"], at: 5)
+
+print(names[5])
+print(names.index(of: "yagom"))
+print(names.index(of: "christal"))
+print(names.first)
+print(names.last)
+
+let firstItem: String = names.removeFirst()
+let lastItem: String = names.removeLast()
+let indexZeroItem: String = names.remove(at: 0)
+
+print(firstItem)
+print(lastItem)
+print(indexZeroItem)
+print(names[1...3])
+
+names[1...3] = ["A", "B", "C"]
+print(names)
