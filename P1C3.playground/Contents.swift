@@ -167,3 +167,12 @@ print("-------------------------------")
 
 
 
+/// Any, AnyObject, nil
+print("- Any, AnyObject, nil --------")
+var someVar: Any = "nadarm"
+print(someVar)
+someVar = 50
+print(someVar)
+someVar = 100.1
+print(someVar)
+print("------------------------------")
