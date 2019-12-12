@@ -115,4 +115,57 @@ print(numberForName["nadarm"])
 
 
 /// Set
+var nameSet1: Set<String> = Set<String>()
+var nameSet2: Set<String> = []
+var nameSet: Set<String> = ["nadarm", "chulsoo", "younghee", "yagom", "yagom"]
 
+var numbers = [100, 200, 300]
+print(type(of:numbers))
+
+print(nameSet.isEmpty)
+print(nameSet.count)
+
+nameSet.insert("jenny")
+print(nameSet.count)
+
+print(nameSet.remove("chulsoo"))
+print(nameSet.remove("john"))
+
+let englishClass: Set<String> = ["john", "chulsoo", "yagom"]
+let koreanClass: Set<String> = ["john", "yagom", "nadarm"]
+
+let intersectSet: Set<String> = englishClass.intersection(koreanClass)
+print(intersectSet)
+
+let symmetricDiffSet: Set<String> = englishClass.symmetricDifference(koreanClass)
+print(symmetricDiffSet)
+
+let unionSet: Set<String> = englishClass.union(koreanClass)
+print(unionSet)
+
+let subtractSet: Set<String> = englishClass.subtracting(koreanClass)
+print(subtractSet)
+
+print(unionSet.sorted())
+
+print(englishClass.isDisjoint(with: koreanClass))
+print(englishClass.isSubset(of: unionSet))
+print(unionSet.isSuperset(of: englishClass))
+print(unionSet.isSuperset(of: koreanClass))
+
+
+/// Collection random
+var array: [Int] = [0, 1, 2, 3, 4]
+var set: Set<Int> = [0, 1, 2, 3, 4]
+var dictionary: [String: Int] = ["a": 1, "b": 2, "c": 3]
+var string: String = "String"
+
+print(array.randomElement())
+print(array.shuffled())
+print(array)
+array.shuffle()
+print(array)
+
+print(set.shuffled())
+print(dictionary.shuffled())
+print(string.shuffled())
