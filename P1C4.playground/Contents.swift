@@ -66,8 +66,8 @@ names.insert("happy", at: 2)
 names.insert(contentsOf: ["jinhee", "minsoo"], at: 5)
 
 print(names[5])
-print(names.index(of: "yagom"))
-print(names.index(of: "christal"))
+print(names.firstIndex(of: "yagom"))
+print(names.firstIndex(of: "christal"))
 print(names.first)
 print(names.last)
 
@@ -82,3 +82,37 @@ print(names[1...3])
 
 names[1...3] = ["A", "B", "C"]
 print(names)
+
+
+
+
+/// Dictionary
+typealias StringIntDictionary = [String: Int]
+var numberForName1: Dictionary<String, Int> = Dictionary<String, Int>()
+var numberForName2: [String: Int] = [String: Int]()
+var numberForName3: StringIntDictionary = StringIntDictionary()
+var numberForName4: [String: Int] = [:]
+var numberForName: [String: Int] = ["nadarm": 100, "chulsoo": 5, "jenny": 300]
+
+print(numberForName.isEmpty)
+print(numberForName.count)
+
+print(numberForName["nadarm"])
+print(numberForName["chulsoo"])
+
+numberForName["nadarm"] = 150
+print(numberForName["nadarm"])
+
+numberForName["max"] = 999
+print(numberForName["max"])
+
+print(numberForName.removeValue(forKey: "nadarm"))
+print(numberForName.removeValue(forKey: "nadarm"))
+print(numberForName["nadarm", default: 0])
+print(numberForName["nadarm"])
+
+
+
+
+/// Set
+
