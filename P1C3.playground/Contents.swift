@@ -38,6 +38,7 @@ print("-------------------------------")
 
 
 /// Float, Double
+print("- Float, Double -----------------")
 var floatValue: Float = 1234567890.1
 let doubleValue: Double = 1234567890.1
 print("float : \(floatValue), double : \(doubleValue)")
@@ -50,5 +51,16 @@ print("-------------------------------")
 
 
 
+
+
+/// Character
+print("- Character -------------------")
+let alphabetA: Character = "A"
+let commandCharacter: Character = "❤︎"
+print(commandCharacter)
+
+let 한글변수이름: Character = "ㄱ"
+print("한글 변수 \(한글변수이름)")
+print("-------------------------------")
 
 
