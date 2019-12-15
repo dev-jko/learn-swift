@@ -56,16 +56,61 @@ for i in 1..<5 {
 ..<2
 
 
+print(!true)
+print(true && false)
+print(true || false)
+
+print(~1)
+print(1 & 0)
+print(1 | 0)
+print(1 ^ 1)
+print(1 >> 1)
+print(1 << 1)
 
 
+var a = 1
+a += 1
+print(a)
+a -= 1
+print(a)
+a *= 2
+print(a)
+a /= 2
+print(a)
+a %= 2
+print(a)
+a <<= 2
+print(a)
+a >>= 1
+print(a)
+a &= 3
+print(a)
+a |= 1
+print(a)
+a ^= 2
+print(a)
 
 
+var unsignedInteger: UInt8 = 0
+//print(unsignedInteger - 1)  // error
+print(unsignedInteger &- 1)
+
+unsignedInteger = UInt8.max
+//print(unsignedInteger + 1)  // error
+print(unsignedInteger &+ 1)
 
 
+var n1: Int? = nil
+print(n1)
+print(n1 ?? 1)
+n1 = 1
+print(n1)
+print(n1 ?? 2)
+print(-n1!)
+print(n1!)
 
-
-
-
+let valueInt: Int = n1 != nil ? n1! : 0
+let valueInt2: Int = n1 ?? 0
 
 
 
