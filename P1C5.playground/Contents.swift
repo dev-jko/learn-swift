@@ -151,7 +151,59 @@ print(5**)
 print(**5**)
 
 
+infix operator ** : MultiplicationPrecedence
+func ** (lhs: String, rhs: String) -> Bool {
+    return lhs.contains(rhs)
+}
 
+print("hello nadarm" ** "nadarm")
+print("nadarm" ** "hello nadarm")
 
+class Car {
+    var modelYear: Int?
+    var modelName: String?
+}
 
+struct SmartPhone {
+    var company: String?
+    var model: String?
+}
+
+func == (left: Car, right: Car) -> Bool {
+    return left.modelName == right.modelName
+}
+
+func == (left: SmartPhone, right: SmartPhone) -> Bool {
+    return left.model == right.model
+}
+
+let myCar: Car = Car()
+myCar.modelName = "S"
+let yourCar: Car = Car()
+yourCar.modelName = "S"
+print(myCar == yourCar)
+
+var myPhone: SmartPhone = SmartPhone()
+myPhone.model = "SE"
+var yourPhone: SmartPhone = SmartPhone()
+yourPhone.model = "6"
+print(myPhone == yourPhone)
+
+class Bike {
+    var modelYear: Int?
+    var modelName: String?
+    
+    static func == (left: Bike, right: Bike) -> Bool {
+        return left.modelName == right.modelName
+    }
+}
+
+struct Phone {
+    var company: String?
+    var model: String?
+    
+    static func == (left: Phone, right: Phone) -> Bool {
+        return left.model == right.model
+    }
+}
 
