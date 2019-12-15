@@ -113,13 +113,42 @@ let valueInt: Int = n1 != nil ? n1! : 0
 let valueInt2: Int = n1 ?? 0
 
 
+let intValue: Int = 1
+print(intValue << 3 + 5)
+print(1 * 3 + 5)
 
 
 
+prefix operator **
+prefix func ** (value: Int) -> Int {
+    return value * value
+}
+
+let minusFive: Int = -5
+print(**minusFive)
+
+prefix func ! (value: String) -> Bool {
+    return value.isEmpty
+}
+
+print(!"nadarm")
+print(!"")
+
+prefix func ** (value: String) -> String {
+    return value + " " + value
+}
+
+print(**"nadarm")
 
 
+postfix operator **
+postfix func ** (value: Int) -> Int {
+    return value + 10
+}
 
+print(5**)
 
+print(**5**)
 
 
 
