@@ -205,10 +205,41 @@ for 번호 in 지역번호 {
 
 
 
+var names: [String] = ["joker", "jenny", "nova"]
+
+while !names.isEmpty {
+    print("Good bye \(names.removeFirst())")
+}
+
+names = ["joker", "jenny", "nova"]
+repeat {
+    print("good bye \(names.removeFirst())")
+} while !names.isEmpty
 
 
+var numbers: [Int] = [3, 2345, 3, 42, 6]
+numbersLoop: for num in numbers {
+    if num > 5 || num < 1 {
+        continue numbersLoop
+    }
+    
+    var count: Int = 0
+    
+    printLoop: while true {
+        print(num)
+        count += 1
+        
+        if count == num {
+            break printLoop
+        }
+    }
+    
+    removeLoop: while true {
+        if numbers.first != num {
+            break numbersLoop
+        }
+        numbers.removeFirst()
+    }
+}
 
-
-
-
-
+print(numbers)
