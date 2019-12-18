@@ -68,16 +68,47 @@ print(nadarmPosition2.point)
 
 
 
+struct Coordinate {
+    var x: Int
+    var y: Int
+    
+    func oppositePoint() -> Self {
+        return Coordinate(x: -x, y: -y)
+    }
+    
+    mutating func setOppositePoint(_ opposite: Coordinate) {
+        x = -opposite.x
+        y = -opposite.y
+    }
+}
 
+var nadamPosition: Coordinate = Coordinate(x: 10, y: 20)
+print(nadamPosition)
+print(nadamPosition.oppositePoint())
+nadamPosition.setOppositePoint(Coordinate(x: 15, y: 10))
+print(nadamPosition)
 
+struct Coordinate2 {
+    var x: Int
+    var y: Int
+    
+    var oppositePoint: Coordinate2 {
+        get {
+            return Coordinate2(x: -x, y: -y)
+        }
+        
+        set(opposite) {
+            x = -opposite.x
+            y = -opposite.y
+        }
+    }
+}
 
-
-
-
-
-
-
-
+var nadamPosition2: Coordinate2 = Coordinate2(x: 10, y: 20)
+print(nadamPosition2)
+print(nadamPosition2.oppositePoint)
+nadamPosition2.oppositePoint = Coordinate2(x: 1, y: 2)
+print(nadamPosition2)
 
 
 
