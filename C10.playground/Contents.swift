@@ -157,3 +157,25 @@ yourAccount.dollarValue = 2
 
 
 
+var wonInPocket: Int = 2000 {
+    willSet {
+        print("pocket money will set \(wonInPocket) -> \(newValue)")
+    }
+    
+    didSet {
+        print("pocket money did set \(oldValue) -> \(wonInPocket)")
+    }
+}
+
+var dollarInPocket: Double {
+    get {
+        Double(wonInPocket) / 1000.0
+    }
+    
+    set {
+        wonInPocket = Int(newValue * 1000.0)
+        print("change \(newValue)dollar")
+    }
+}
+
+dollarInPocket = 3.5
