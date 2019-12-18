@@ -54,7 +54,17 @@ let nadarmPosition: Position3 = Position3(name: "nadarm")
 nadarmPosition.point = CoordinatePoint(x: 3, y: 2)
 
 
+class Position4 {
+    lazy var point: CoordinatePoint2 = CoordinatePoint2()
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
 
+let nadarmPosition2: Position4 = Position4(name: "nadarm")
+print(nadarmPosition2.point)
 
 
 
