@@ -227,3 +227,41 @@ class Account2 {
 }
 
 
+class Person {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+struct Stuff {
+    var name: String
+    var owner: Person
+}
+
+print(type(of: \Person.name))
+print(type(of: \Stuff.name))
+
+let keyPath = \Stuff.owner
+let nameKeyPath = keyPath.appending(path: \.name)
+
+let yagom = Person(name: "yagom")
+let hana = Person(name: "hana")
+let macbook = Stuff(name: "MacBook Pro", owner: yagom)
+var iMac = Stuff(name: "iMac", owner: yagom)
+let iPhone = Stuff(name: "iPhone", owner: hana)
+
+let stuffNameKeyPath = \Stuff.name
+let ownerKeyPath = \Stuff.owner
+let ownerNameKeyPath = ownerKeyPath.appending(path: \.name)
+
+print(macbook[keyPath: stuffNameKeyPath])
+print(iMac[keyPath: stuffNameKeyPath])
+print(iPhone[keyPath: stuffNameKeyPath])
+
+print(macbook[keyPath: ownerNameKeyPath])
+
+iMac[keyPath: stuffNameKeyPath] = "iMac Pro"
+print(iMac[keyPath: stuffNameKeyPath])
+
