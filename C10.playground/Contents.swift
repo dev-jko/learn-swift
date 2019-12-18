@@ -179,3 +179,51 @@ var dollarInPocket: Double {
 }
 
 dollarInPocket = 3.5
+
+
+
+class AClass {
+    static var typeProperty: Int = 0
+    
+    var instanceProperty: Int = 0 {
+        didSet {
+            Self.typeProperty = instanceProperty + 100
+        }
+    }
+    
+    static var typeComputedProperty: Int {
+        get {
+            typeProperty
+        }
+        
+        set {
+            typeProperty = newValue
+        }
+    }
+}
+
+AClass.typeProperty = 123
+let classInstance: AClass = AClass()
+classInstance.instanceProperty = 100
+print(AClass.typeProperty)
+print(AClass.typeComputedProperty)
+
+
+class Account2 {
+    static let dollarExchangeRate: Double = 1000.0
+    
+    var credit: Int = 0
+    
+    var dollar: Double {
+        get {
+            Double(credit) / Self.dollarExchangeRate
+        }
+        
+        set {
+            credit = Int(newValue * Account2.dollarExchangeRate)
+            print("credit change -> \(newValue)")
+        }
+    }
+}
+
+
