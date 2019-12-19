@@ -287,13 +287,14 @@ class LevelClass {
         }
     }
     
-    func jumpLevel(to: Int) {
-        print("Jump to \(to)")
-        level = to
+    func jumpLevel(to level: Int) {
+        print("Jump to \(level)")
+        self.level = level
     }
     
     func reset() {
         print("Reset!")
+//        self = LevelClass()  // error
         level = 0
     }
 }
@@ -323,14 +324,15 @@ struct LevelStruct {
         }
     }
     
-    mutating func jumpLevel(to: Int) {
-        print("Jump to \(to)")
-        level = to
+    mutating func jumpLevel(to level: Int) {
+        print("Jump to \(level)")
+        self.level = level
     }
     
     mutating func reset() {
         print("Reset!")
-        level = 0
+        self = LevelStruct()
+//        level = 0
     }
 }
 
@@ -339,9 +341,17 @@ levelStructInstance.levelUp()
 levelStructInstance.levelDown()
 levelStructInstance.jumpLevel(to: 3)
 
+enum OnOffSwitch {
+    case on, off
+    
+    mutating func nextState() {
+        self = self == .on ? .off : .on
+    }
+}
 
-
-
+var toggle: OnOffSwitch = .off
+toggle.nextState()
+print(toggle)
 
 
 
