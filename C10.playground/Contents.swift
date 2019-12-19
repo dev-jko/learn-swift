@@ -355,23 +355,60 @@ print(toggle)
 
 
 
+class AClass2 {
+    static func staticTypeMethod() {
+        print("AClass staticTypeMethod")
+    }
+    
+    class func classTypeMethod() {
+        print("AClass classTypeMethod")
+    }
+}
+
+class BClass: AClass2 {
+    /*  error static type method can't override
+    override static func staticTypeMethod() {
+    }
+    */
+    
+    override class func classTypeMethod() {
+        print("BClass classTypeMethod")
+    }
+}
+
+AClass2.staticTypeMethod()
+AClass2.classTypeMethod()
+BClass.staticTypeMethod()
+BClass.classTypeMethod()
 
 
+struct SystemVolume {
+    static var volume: Int = 5
+    
+    static func mute() {
+        self.volume = 0  // static func에서 self == Self == SystemVolume
+//        Self.volume = 0  // 같은 표현
+//        SystemVolume.volume = 0 // 같은 표현
+    }
+}
 
 
+class Navigation {
+    var volume: Int = 5
+    
+    func guideWay() {
+        SystemVolume.mute()
+    }
+    
+    func finishGuideWay() {
+        SystemVolume.volume = self.volume
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SystemVolume.volume = 10
+let myNavi: Navigation = Navigation()
+myNavi.guideWay()
+print(SystemVolume.volume)
+myNavi.finishGuideWay()
+print(SystemVolume.volume)
 
