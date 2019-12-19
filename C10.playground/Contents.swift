@@ -265,3 +265,103 @@ print(macbook[keyPath: ownerNameKeyPath])
 iMac[keyPath: stuffNameKeyPath] = "iMac Pro"
 print(iMac[keyPath: stuffNameKeyPath])
 
+
+
+class LevelClass {
+    var level: Int = 0 {
+        didSet {
+            print("Level \(level)")
+        }
+    }
+    
+    func levelUp() {
+        print("Level Up!")
+        level += 1
+    }
+    
+    func levelDown() {
+        print("Level Down")
+        level -= 1
+        if level < 0 {
+            reset()
+        }
+    }
+    
+    func jumpLevel(to: Int) {
+        print("Jump to \(to)")
+        level = to
+    }
+    
+    func reset() {
+        print("Reset!")
+        level = 0
+    }
+}
+
+var levelClassInstance: LevelClass = LevelClass()
+levelClassInstance.levelUp()
+levelClassInstance.levelDown()
+levelClassInstance.jumpLevel(to: 4)
+
+struct LevelStruct {
+    var level: Int = 0 {
+        didSet {
+            print("Level \(level)")
+        }
+    }
+    
+    mutating func levelUp() {
+        print("Level Up!")
+        level += 1
+    }
+    
+    mutating func levelDown() {
+        print("Level Down")
+        level -= 1
+        if level < 0 {
+            reset()
+        }
+    }
+    
+    mutating func jumpLevel(to: Int) {
+        print("Jump to \(to)")
+        level = to
+    }
+    
+    mutating func reset() {
+        print("Reset!")
+        level = 0
+    }
+}
+
+var levelStructInstance: LevelStruct = LevelStruct()
+levelStructInstance.levelUp()
+levelStructInstance.levelDown()
+levelStructInstance.jumpLevel(to: 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
