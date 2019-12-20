@@ -223,3 +223,51 @@ class SchoolClass {
 let myClass: SchoolClass = SchoolClass()
 print(myClass.students.count)
 
+
+
+class SomeClass2 {
+    deinit {
+        print("Instance will be dealicated immediately")
+    }
+}
+
+var instance: SomeClass2? = SomeClass2()
+instance = nil
+
+class FileManager {
+    var fileName: String
+    
+    init(fileName: String) {
+        self.fileName = fileName
+    }
+    
+    func openFile() {
+        print("open file \(self.fileName)")
+    }
+    
+    func modifyFile() {
+        print("modify file \(self.fileName)")
+    }
+    
+    func writeFile() {
+        print("write file \(self.fileName)")
+    }
+    
+    func closeFile() {
+        print("close file \(self.fileName)")
+    }
+    
+    deinit {
+        print("Deinit instance")
+        self.writeFile()
+        self.closeFile()
+    }
+}
+
+var fileManager: FileManager? = FileManager(fileName: "abc.txt")
+if let manager: FileManager = fileManager {
+    manager.openFile()
+    manager.modifyFile()
+}
+
+fileManager = nil
