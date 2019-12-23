@@ -37,15 +37,16 @@ struct Address {
             restAddress = detail
         }
         
-        if let rest: String = restAddress {
-            var fullAddress: String = self.province
-            fullAddress += " " + self.city
-            fullAddress += " " + self.street
-            fullAddress += " " + rest
-            return fullAddress
-        } else {
+        guard let rest: String = restAddress else {
             return nil
         }
+        
+        var fullAddress: String = self.province
+        fullAddress += " " + self.city
+        fullAddress += " " + self.street
+        fullAddress += " " + rest
+        
+        return fullAddress
     }
     
     func printAddress() {
@@ -108,3 +109,58 @@ var optionalDictionary: [String : [Int]]? = [String: [Int]]()
 optionalDictionary?["numberArray"] = optionalArray
 optionalDictionary?["numberArray"]?[2]
 
+
+
+for i in 0...3 {
+    if i == 2 {
+        print(i)
+    } else {
+        continue
+    }
+}
+
+for i in 0...3 {
+    guard i == 2 else {
+        continue
+    }
+    print(i)
+}
+
+
+func greet(_ person: [String: String]) {
+    guard let name: String = person["name"] else {
+        return
+    }
+    
+    print("hello \(name)")
+    
+    guard let location: String = person["location"] else {
+        print("I hope the weather is nice near you")
+        return
+    }
+    
+    print("I hope the weather is nice in \(location)")
+}
+
+var personInfo: [String: String] = [:]
+personInfo["name"] = "Jenny"
+greet(personInfo)
+personInfo["location"] = "Korea"
+greet(personInfo)
+
+
+func enterClub(name: String?, age: Int?) {
+    guard let name: String = name, let age: Int = age, age > 19, name.isEmpty == false else {
+        print("You are too young to enter the club")
+        return
+    }
+    
+    print("Welcome \(name)!")
+}
+
+
+//let first: Int = 3
+//let second: Int = 5
+//guard first > second else {  // error
+//    print("first <= second")
+//}
