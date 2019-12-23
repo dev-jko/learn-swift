@@ -139,4 +139,60 @@ returnedClosure2()
 print(instance.x)
 
 
+// error
+//func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
+//    return array.lazy.filter { predicate($0) }.isEmpty == false
+//}
+
+let numbers: [Int] = [2, 4, 6, 8]
+let evenNumberPredicate: (Int) -> Bool = { $0 % 2 == 0 }
+let oddNumberPredicate: (Int) -> Bool = { $0 % 2 == 1 }
+
+func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
+    return withoutActuallyEscaping(predicate, do:  { escapablePredicate in
+        return (array.lazy.filter { escapablePredicate($0) }.isEmpty == false)
+    })
+}
+
+let hasEvenNumber: Bool = hasElements(in: numbers, match: evenNumberPredicate)
+let hasOddNumber: Bool = hasElements(in: numbers, match: oddNumberPredicate)
+print(hasEvenNumber)
+print(hasOddNumber)
+
+
+
+var customersInLine: [String] = ["YoangWha", "SangYong", "sungHun", "HaMi"]
+print(customersInLine.count)
+
+let customerProvider: () -> String = {
+    return customersInLine.removeFirst()
+}
+print(customersInLine.count)
+
+print("Now serving \(customerProvider())!")
+print(customersInLine.count)
+
+
+customersInLine = ["YoangWha", "SangYong", "sungHun", "HaMi"]
+
+func serveCustomer(_ customerProvider: () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+
+serveCustomer( {customersInLine.removeFirst() } )
+
+func serveCustomer2(_ customerProvider: @autoclosure () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+
+serveCustomer2(customersInLine.removeFirst())
+
+
+func returnProvider(_ customerProvider: @autoclosure @escaping () -> String) -> () -> String {
+    return customerProvider
+}
+
+let customerProvider2: () -> String = returnProvider(customersInLine.removeFirst())
+print("Now serving \(customerProvider2())!")
+
 
