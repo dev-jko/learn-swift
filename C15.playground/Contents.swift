@@ -47,3 +47,16 @@ print(resultInt)
 let range: CountableClosedRange = 0...3
 let resultRange: [Int] = range.map { $0 * 2 }
 print(resultRange)
+
+
+
+let evenNumbers2: [Int] = numbers.filter { $0 % 2 == 0 }
+let oddNumbers2: [Int] = numbers.filter { $0 % 2 == 1 }
+print(evenNumbers2)
+print(oddNumbers2)
+
+let mappedNumbers: [Int] = numbers.map { $0 + 3 }
+let evenNumbers3: [Int] = mappedNumbers.filter { $0 % 2 == 0 }
+let evenNumbers4: [Int] = numbers.map { $0 + 3 }.filter { $0 % 2 == 0 }
+print(evenNumbers3)
+print(evenNumbers4)
