@@ -135,3 +135,32 @@ yagom.age = 55
 
 jay.age = 14
 jay.fullName = "Kim jay"
+
+
+
+class School {
+    var students: [Student] = []
+    
+    subscript(index: Int) -> Student {
+        print("School subscript")
+        return students[index]
+    }
+}
+
+class MiddleSchool: School {
+    var middleStudents: [Student] = []
+    
+    override subscript(index: Int) -> Student {
+        print("middle school subscript")
+        return middleStudents[index]
+    }
+}
+
+let university: School = School()
+university.students.append(Student())
+university.students.append(Student())
+university[0]
+
+let middle: MiddleSchool = MiddleSchool()
+middle.middleStudents.append(Student())
+middle[0]
