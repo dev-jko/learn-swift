@@ -164,3 +164,17 @@ university[0]
 let middle: MiddleSchool = MiddleSchool()
 middle.middleStudents.append(Student())
 middle[0]
+
+
+class Person2 {
+    final var name: String = ""
+    final func speak() {
+        print("abc")
+    }
+}
+
+final class Student2: Person2 {
+//    override var name: String  // error
+}
+
+//class UniversityStudent: Student2 {}  // error
