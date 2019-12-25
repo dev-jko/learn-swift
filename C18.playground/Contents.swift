@@ -1,6 +1,9 @@
 class Person {
     var name: String = ""
     var age: Int = 0
+    var koreanAge: Int {
+        return self.age + 1
+    }
     
     var introduction: String {
         return "name : \(name), age : \(age)"
@@ -24,6 +27,18 @@ yagom.speak()
 
 class Student: Person {
     var grade: String = "F"
+    override var koreanAge: Int {
+        get {
+            return super.koreanAge
+        }
+        
+        set {
+            self.age = newValue - 1
+        }
+    }
+    override var introduction: String {
+        return super.introduction + " " + "학점 : \(self.grade)"
+    }
     
     func study() {
         print("study hard...")
@@ -70,3 +85,13 @@ print(Person.introduceClass())
 print(Student.introduceClass())
 print(UniversityStudent.introduceClass() as String)
 UniversityStudent.introduceClass() as Void
+
+
+//yagom.koreanAge = 56  // error
+print(yagom.introduction)
+print(yagom.koreanAge)
+
+jay.age = 14
+jay.koreanAge = 15
+print(jay.introduction)
+print(jay.koreanAge)
