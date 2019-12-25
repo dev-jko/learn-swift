@@ -171,6 +171,14 @@ class Person2 {
     final func speak() {
         print("abc")
     }
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    convenience init() {
+        self.init(name: "nadarm")
+    }
 }
 
 final class Student2: Person2 {
@@ -178,3 +186,7 @@ final class Student2: Person2 {
 }
 
 //class UniversityStudent: Student2 {}  // error
+
+
+
+
