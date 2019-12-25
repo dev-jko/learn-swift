@@ -1,8 +1,24 @@
 class Person {
     var name: String = ""
-    var age: Int = 0
+    
+    var age: Int = 0 {
+        didSet {
+            print("Person age: \(self.age)")
+        }
+    }
+    
     var koreanAge: Int {
         return self.age + 1
+    }
+    
+    var fullName: String {
+        get {
+            return self.name
+        }
+        
+        set {
+            self.name = newValue
+        }
     }
     
     var introduction: String {
@@ -27,6 +43,13 @@ yagom.speak()
 
 class Student: Person {
     var grade: String = "F"
+    
+    override var age: Int {
+        didSet {
+            print("Student age : \(self.age)")
+        }
+    }
+    
     override var koreanAge: Int {
         get {
             return super.koreanAge
@@ -35,7 +58,16 @@ class Student: Person {
         set {
             self.age = newValue - 1
         }
+        
+//        didSet {}  // error
     }
+    
+    override var fullName: String {
+        didSet {
+            print("Full name : \(self.fullName)")
+        }
+    }
+    
     override var introduction: String {
         return super.introduction + " " + "학점 : \(self.grade)"
     }
@@ -95,3 +127,11 @@ jay.age = 14
 jay.koreanAge = 15
 print(jay.introduction)
 print(jay.koreanAge)
+
+
+
+yagom.fullName = "Jo yagom"
+yagom.age = 55
+
+jay.age = 14
+jay.fullName = "Kim jay"
