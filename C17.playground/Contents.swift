@@ -90,3 +90,16 @@ print(highSchool.number)
 print(highSchool[4] = Student(name: "nadarm", number: 10))
 print(highSchool.number)
 print(highSchool.students)
+
+
+
+enum SchoolEnum: Int {
+    case elementary = 1, middle, high, university
+    
+    static subscript(level: Int) -> Self? {
+        return Self(rawValue: level)
+    }
+}
+
+let school:SchoolEnum? = SchoolEnum[2]
+print(school)
