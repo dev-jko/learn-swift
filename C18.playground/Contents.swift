@@ -356,3 +356,112 @@ print(joker.description)
 
 let chope: UniversityStudent555 = UniversityStudent555(name: "chope", major: "Computer", grade: "C")
 print(chope.description)
+
+
+
+class Person6 {
+    var name: String
+    
+    required init() {
+        self.name = "Unknown"
+    }
+}
+
+class Student6: Person6 {
+    var major: String = "Unknown"
+}
+
+let mijeong: Student6 = Student6()
+
+
+class Student66: Person6 {
+    var major: String = "Unknown"
+    
+    init(major: String) {
+        self.major = major
+        super.init()
+    }
+    
+    required init() {
+        self.major = "Unknown"
+        super.init()
+    }
+}
+
+class UniversityStudent6: Student66 {
+    var grade: String
+    
+    init(grade: String) {
+        self.grade = grade
+        super.init()
+    }
+    
+    required init() {
+        self.grade = "F"
+        super.init()
+    }
+}
+
+let jiSoo: Student66 = Student66()
+print(jiSoo.major)
+
+let yagom3: Student66 = Student66(major: "Swift")
+print(yagom3.major)
+
+let juHyun: UniversityStudent6 = UniversityStudent6(grade: "A+")
+print(juHyun.grade)
+
+
+class Person7 {
+    var name: String
+    
+    init() {
+        self.name = "Unknown"
+    }
+}
+
+class Student7: Person7 {
+    var major: String = "Unknown"
+    
+    init(major: String) {
+        self.major = major
+        super.init()
+    }
+    
+    required override init() {
+        self.major = "Unknown"
+        super.init()
+    }
+    
+    required convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+}
+
+class UniversityStudent7: Student7 {
+    var grade: String
+    
+    init(grade: String) {
+        self.grade = grade
+        super.init()
+    }
+    
+    required init() {
+        self.grade = "F"
+        super.init()
+    }
+    
+    required convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+}
+
+let yagom4: UniversityStudent7 = UniversityStudent7()
+print(yagom4.grade)
+
+let juHyun2: UniversityStudent7 = UniversityStudent7(name: "JuHyun")
+print(juHyun2.name)
+
+
