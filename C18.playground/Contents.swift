@@ -189,4 +189,74 @@ final class Student2: Person2 {
 
 
 
+class Person3 {
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    convenience init(name: String) {
+        self.init(name: name, age: 0)
+    }
+}
+
+class Student3: Person3 {
+    var major: String
+    
+    override init(name: String, age: Int) {
+        self.major = "Swift"
+        super.init(name: name, age: age)
+    }
+    
+    convenience init(name: String) {
+        self.init(name: name, age: 7)
+    }
+}
+
+
+class Person4 {
+    var name: String
+    var age: Int
+    
+    init() {
+        self.name = "Unknown"
+        self.age = 0
+    }
+    
+    init?(name: String, age: Int) {
+        if name.isEmpty {
+            return nil
+        }
+        
+        self.name = name
+        self.age = age
+    }
+    
+    init?(age: Int) {
+        if age < 0 {
+            return nil
+        }
+        
+        self.name = "Unknown"
+        self.age = age
+    }
+}
+
+class Student4: Person4 {
+    var major: String
+    
+    override init?(name: String, age: Int) {
+        self.major = "Swift"
+        super.init(name: name, age: age)
+    }
+    
+    override init(age: Int) {
+        self.major = "Swift"
+        super.init()
+    }
+}
+
 
