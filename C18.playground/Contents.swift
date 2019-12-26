@@ -260,3 +260,99 @@ class Student4: Person4 {
 }
 
 
+
+class Person5 {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    convenience init() {
+        self.init(name: "Unknown")
+    }
+}
+
+class Student5: Person5 {
+    var major: String = "Swift"
+}
+
+let yagom2: Person5 = Person5(name: "yagom")
+let jinSung: Student5 = Student5(name: "haha")
+print(yagom2.name)
+print(jinSung.name)
+
+let wizplan: Person5 = Person5()
+let haha: Student5 = Student5()
+print(wizplan.name)
+print(haha.name)
+
+
+class Student55: Person5 {
+    var major: String
+    
+    override init(name: String) {
+        self.major = "Unknown"
+        super.init(name: name)
+    }
+    
+    init(name: String, major: String) {
+        self.major = major
+        super.init(name: name)
+    }
+}
+
+let wiz: Person5 = Person5()
+let jin: Student55 = Student55()
+print(wiz.name)
+print(jin.name)
+print(jin.major)
+
+
+class Student555: Person5 {
+    var major: String
+    
+    convenience init(major: String) {
+        self.init()
+        self.major = major
+    }
+    
+    override convenience init(name: String) {
+        self.init(name: name, major: "Unknown")
+    }
+    
+    init(name: String, major: String) {
+        self.major = major
+        super.init(name: name)
+    }
+}
+
+let jin2: Student555 = Student555(major: "Swift")
+print(jin2.name)
+print(jin2.major)
+
+
+
+class UniversityStudent555: Student555 {
+    var grade: String = "A+"
+    var description: String {
+        return "\(self.name) \(self.major) \(self.grade)"
+    }
+    
+    convenience init(name: String, major: String, grade: String) {
+        self.init(name: name, major: major)
+        self.grade = grade
+    }
+}
+
+let nova: UniversityStudent555 = UniversityStudent555()
+print(nova.description)
+
+let raon: UniversityStudent555 = UniversityStudent555(name: "raon")
+print(raon.description)
+
+let joker: UniversityStudent555 = UniversityStudent555(name: "joker", major: "Programming")
+print(joker.description)
+
+let chope: UniversityStudent555 = UniversityStudent555(name: "chope", major: "Computer", grade: "C")
+print(chope.description)
