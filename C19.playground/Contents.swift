@@ -156,20 +156,76 @@ let castedCoffee2: Coffee = yourCoffee as Coffee
 
 
 
+func checkType(of item: AnyObject) {
+    if item is Latte {
+        print("item is Latte")
+    } else if item is Americano {
+        print("item is Americano")
+    } else if item is Coffee {
+        print("item is Coffee")
+    } else {
+        print("Unknown Type")
+    }
+}
+
+checkType(of: coffee)
+checkType(of: myCoffee)
+checkType(of: yourCoffee)
+checkType(of: actingConstant)
+
+func castTypeToAppropriate(item: AnyObject) {
+    if let castedItem: Latte = item as? Latte {
+        print(castedItem.description)
+    } else if let castedItem: Americano = item as? Americano {
+        print(castedItem.description)
+    } else if let castedItem: Coffee = item as? Coffee {
+        print(castedItem.description)
+    } else {
+        print("Unknown Type")
+    }
+}
+
+castTypeToAppropriate(item: coffee)
+castTypeToAppropriate(item: myCoffee)
+castTypeToAppropriate(item: yourCoffee)
+castTypeToAppropriate(item: actingConstant)
 
 
+func checkAnyType(of item: Any) {
+    switch item {
+    case 0 as Int:
+        print("zero as an Int")
+    case 0 as Double:
+        print("zero as an Double")
+    case let someInt as Int:
+        print("integer : \(someInt)")
+    case let someDouble as Double where someDouble > 0:
+        print("a positive double : \(someDouble)")
+    case is Double:
+        print("some other double value that I don't want to print")
+    case let (x, y) as (Double, Double):
+        print("(x, y) point : \(x), \(y)")
+    case let latte as Latte:
+        print(latte.description)
+    case let stringConverter as (String) -> String:
+        print(stringConverter("yagom"))
+    default:
+        print("something else : \(type(of: item))")
+    }
+}
 
+checkAnyType(of: 0)
+checkAnyType(of: 0.0)
+checkAnyType(of: 42)
+checkAnyType(of: 3.14)
+checkAnyType(of: -0.24)
+checkAnyType(of: "hello")
+checkAnyType(of: (3.0, 2.0))
+checkAnyType(of: yourCoffee)
+checkAnyType(of: coffee)
+checkAnyType(of: { (name: String) -> String in "Hello, \(name)" })
 
-
-
-
-
-
-
-
-
-
-
-
-
+let optionalValue: Int? = 100
+print(optionalValue) // xcode 경고 나옴
+print(optionalValue as Any) // xcode 경고 없음
 
