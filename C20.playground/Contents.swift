@@ -345,3 +345,38 @@ var someVariable: Car & Aged
 someVariable = Truck(name: "Truck", age: 5)
 //someVariable = myCar  // error
 
+
+print(yagom is Named5)
+print(yagom is Aged)
+
+print(myCar is Named5)
+print(myCar is Aged)
+
+if let castedInstance: Named5 = yagom as? Named5 {
+    print("\(castedInstance) is Named")
+}
+
+if let castedInstance: Aged = yagom as? Aged {
+    print("\(castedInstance) is Aged")
+}
+
+if let castedInstance: Named5 = myCar as? Named5 {
+    print("\(castedInstance) is Named")
+}
+
+if let castedInstance: Aged = myCar as? Aged {
+    print("\(castedInstance) is Aged")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
