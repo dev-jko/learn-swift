@@ -37,3 +37,101 @@ class Mail: Sendable {
         self.to = receiver
     }
 }
+
+
+protocol Receiveable2 {
+    func received(data: Any, from: Sendable2)
+}
+
+protocol Sendable2 {
+    var from: Sendable2 { get }
+    var to: Receiveable2? { get }
+    
+    func send(data: Any)
+    
+    static func isSendableInstance(_ instance: Any) -> Bool
+}
+
+class Message2: Sendable2, Receiveable2 {
+    var from: Sendable2 {
+        return self
+    }
+    
+    var to: Receiveable2?
+    
+    func send(data: Any) {
+        guard let receiver: Receiveable2 = self.to else {
+            print("Message has no receiver")
+            return
+        }
+        
+        receiver.received(data: data, from: self.from)
+    }
+    
+    func received(data: Any, from: Sendable2) {
+        print("Message received \(data) from \(from)")
+    }
+    
+    class func isSendableInstance(_ instance: Any) -> Bool {
+        if let sendableInstance: Sendable2 = instance as? Sendable2 {
+            return sendableInstance.to != nil
+        }
+        return false
+    }
+}
+
+class Mail2: Sendable2, Receiveable2 {
+    var from: Sendable2 {
+        return self
+    }
+    
+    var to: Receiveable2?
+    
+    func send(data: Any) {
+        guard let receiver: Receiveable2 = self.to else {
+            print("Mail has no receiver")
+            return
+        }
+        
+        receiver.received(data: data, from: self.from)
+    }
+    
+    func received(data: Any, from: Sendable2) {
+        print("Mail received \(data) from \(from)")
+    }
+    
+    static func isSendableInstance(_ instance: Any) -> Bool {
+        if let sendableInstance: Sendable2 = instance as? Sendable2 {
+            return sendableInstance.to != nil
+        }
+        return false
+    }
+}
+
+let myPhoneMessage: Message2 = Message2()
+let yourPhoneMessage: Message2 = Message2()
+
+myPhoneMessage.send(data: "Hello")
+
+myPhoneMessage.to = yourPhoneMessage
+myPhoneMessage.send(data: "Hello")
+
+let myMail: Mail2 = Mail2()
+let yourMail: Mail2 = Mail2()
+
+myMail.send(data: "Hi")
+
+myMail.to = yourMail
+myMail.send(data: "Hi")
+
+myMail.to = myPhoneMessage
+myMail.send(data: "bye")
+
+Message2.isSendableInstance("Hello")
+
+Message2.isSendableInstance(myPhoneMessage)
+
+Message2.isSendableInstance(yourPhoneMessage)
+Mail2.isSendableInstance(myPhoneMessage)
+Mail2.isSendableInstance(myMail)
+
