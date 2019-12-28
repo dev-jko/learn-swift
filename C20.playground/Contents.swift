@@ -407,9 +407,8 @@ movableInstance.fly?()
 
 
 
-
-
-
-
-
+var someNamed: Named2 = Animal(name: "Animal")
+someNamed = Pet2(name: "Pet")
+someNamed = Person4(name: "Person")
+someNamed = School2(name: "School")!
 
