@@ -171,17 +171,87 @@ enum Direction: Resettable {
 
 
 
+protocol Named {
+    var name: String { get }
+    
+    init(name: String)
+}
+
+struct Pet: Named {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Person2: Named {
+    var name: String
+    
+    required init(name: String) {
+        self.name = name
+    }
+}
+
+final class Person3: Named {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class School {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class MiddleSchool: School, Named {
+    required override init(name: String) {
+        super.init(name: name)
+    }
+}
 
 
+protocol Named2 {
+    var name: String { get }
+    
+    init?(name: String)
+}
 
+struct Animal: Named2 {
+    var name: String
+    
+    init!(name: String) {
+        self.name = name
+    }
+}
 
+struct Pet2: Named2 {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
 
+class Person4: Named2 {
+    var name: String
+    
+    required init(name: String) {
+        self.name = name
+    }
+}
 
-
-
-
-
-
-
+class School2: Named2 {
+    var name: String
+    
+    required init?(name: String) {
+        self.name = name
+    }
+}
 
 
