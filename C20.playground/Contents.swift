@@ -370,7 +370,40 @@ if let castedInstance: Aged = myCar as? Aged {
 
 
 
+import Foundation
 
+@objc protocol Moveable {
+    func walk()
+    @objc optional func fly()
+}
+
+class Tiger: NSObject, Moveable {
+    func walk() {
+        print("Tiger walks")
+    }
+}
+
+class Bird: NSObject, Moveable {
+    func walk() {
+        print("Bird walks")
+    }
+    
+    func fly() {
+        print("Bird flys")
+    }
+}
+
+let tiger: Tiger = Tiger()
+let bird: Bird = Bird()
+tiger.walk()
+bird.walk()
+bird.fly()
+
+var movableInstance: Moveable = tiger
+movableInstance.fly?()
+
+movableInstance = bird
+movableInstance.fly?()
 
 
 
