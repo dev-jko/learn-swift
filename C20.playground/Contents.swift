@@ -300,18 +300,48 @@ class SomeClass2: ClassOnlyProtocol {
 
 
 
+protocol Named5 {
+    var name: String { get }
+}
 
+protocol Aged {
+    var age: Int { get }
+}
 
+struct Person5: Named5, Aged {
+    var name: String
+    var age: Int
+}
 
+class Car: Named5 {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
 
+class Truck: Car, Aged {
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.age = age
+        super.init(name: name)
+    }
+}
 
+func celebrateBirthday(to celebrator: Named5 & Aged) {
+    print("Happy birthday \(celebrator.name)! Now you are \(celebrator.age)")
+}
 
+let yagom: Person5 = Person5(name: "yagom", age: 99)
+celebrateBirthday(to: yagom)
 
+let myCar: Car = Car(name: "BoongBoong")
+//celebrateBirthday(to: myCar)  // error
 
-
-
-
-
-
-
+//var someVariable: Car & Truck & Aged  // error
+var someVariable: Car & Aged
+someVariable = Truck(name: "Truck", age: 5)
+//someVariable = myCar  // error
 
