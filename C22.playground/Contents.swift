@@ -166,3 +166,78 @@ func makeDictionaryWithTwoValue<Key: Hashable, Value>(key: Key, value: Value) ->
     let dictionary: Dictionary<Key, Value> = [key: value]
     return dictionary
 }
+
+
+
+protocol Container {
+    associatedtype ItemType
+    var count: Int { get }
+    mutating func append(_ item: ItemType)
+    subscript(i: Int) -> ItemType { get }
+}
+
+class MyContainer: Container {
+    var items: [Int] = []
+    
+    var count: Int {
+        return items.count
+    }
+    
+    func append(_ item: Int) {
+        items.append(item)
+    }
+    
+    subscript(i: Int) -> Int {
+        return items[i]
+    }
+}
+
+struct IntStack2: Container {
+    typealias ItemType = Int
+    
+    var items: [ItemType] = []
+    
+    var count: Int {
+        return items.count
+    }
+    
+    mutating func push(_ item: ItemType) {
+        items.append(item)
+    }
+    
+    mutating func pop() -> ItemType {
+        return items.removeLast()
+    }
+    
+    mutating func append(_ item: ItemType) {
+        self.push(item)
+    }
+    
+    subscript(i: Int) -> ItemType {
+        return items[i]
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
