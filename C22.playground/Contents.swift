@@ -220,24 +220,22 @@ struct IntStack2: Container {
 
 
 
+extension IntStack2 {
+    subscript<Indices: Sequence>(indices: Indices) -> [ItemType] where Indices.Iterator.Element == Int {
+        var result: [ItemType] = []
+        for index in indices {
+            result.append(self[index])
+        }
+        return result
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var integerStack2: IntStack2 = IntStack2()
+integerStack2.append(1)
+integerStack2.append(2)
+integerStack2.append(3)
+integerStack2.append(4)
+integerStack2.append(5)
+integerStack2.append(6)
+print(integerStack2[0...5])
 
