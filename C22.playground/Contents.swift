@@ -139,9 +139,15 @@ anyStack.printStack()
 
 
 
+extension Stack {
+    var topElement: Element? {
+        return self.items.last
+    }
+}
 
-
-
+print(doubleStack.topElement)
+print(stringStack.topElement)
+print(anyStack.topElement)
 
 
 
