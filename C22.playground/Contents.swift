@@ -151,3 +151,18 @@ print(anyStack.topElement)
 
 
 
+func swapTwoValues<T: BinaryInteger>(_ a: inout T, _ b: inout T) { }
+
+struct Stack2<Element: Hashable> { }
+
+func swapTowValues<T: BinaryInteger>(_ a: inout T, _ b: inout T) where T: FloatingPoint { }
+
+
+func substractTwoValue<T: BinaryInteger>(_ a: T, _ b: T) -> T {
+    return a - b
+}
+
+func makeDictionaryWithTwoValue<Key: Hashable, Value>(key: Key, value: Value) -> Dictionary<Key, Value> {
+    let dictionary: Dictionary<Key, Value> = [key: value]
+    return dictionary
+}
