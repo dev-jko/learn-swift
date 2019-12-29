@@ -161,10 +161,23 @@ let centerRect: Rect = Rect(center: Point(x: 4.0, y: 4.0), size: Size(width: 3.0
 
 
 
+extension String {
+    subscript(appedValue: String) -> String {
+        return self + appedValue
+    }
+    
+    subscript(repeatCount: Int) -> String {
+        var str: String = ""
+        for _ in 0..<repeatCount {
+            str += self
+        }
+        
+        return str
+    }
+}
 
-
-
-
+print("abc"["def"])
+print("abc"[3])
 
 
 
