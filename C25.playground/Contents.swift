@@ -26,3 +26,23 @@ for _ in 0..<2 {
     print("Hello")
 }
 
+
+
+let someValue: Int = 42
+
+
+
+switch yagom {
+case let (name, age, gender):
+    print("name: \(name), age: \(age), gender: \(gender)")
+}
+
+switch yagom {
+case (let name, let age, let gender):
+    print("name: \(name), age: \(age), gender: \(gender)")
+}
+
+switch yagom {
+case let (name, _, gender):
+    print("name: \(name), gender: \(gender)")
+}
