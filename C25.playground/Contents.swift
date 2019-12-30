@@ -46,3 +46,49 @@ switch yagom {
 case let (name, _, gender):
     print("name: \(name), gender: \(gender)")
 }
+
+
+
+let (a): Int = 2
+print(a)
+
+let (x, y): (Int, Int) = (1, 2)
+print(x)
+print(y)
+
+let name: String = "Jung"
+let age: Int = 99
+let gender: String? = "Male"
+
+switch (name, age, gender) {
+case ("Jung", _, _):
+    print("Hello Jung")
+case (_, _, "Male"?):
+    print("who are you man?")
+default:
+    print("I don't know who you are")
+}
+
+let points: [(Int, Int)] = [(0, 0), (1, 0), (1, 1)]
+
+for (x, _) in points {
+    print(x)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
