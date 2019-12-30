@@ -243,3 +243,20 @@ let combinedInt: Int = intStack.reduce(100) { $0 + $1 }
 intStack.printSelf()
 print(combinedInt)
 
+
+
+extension SelfPrintable {
+    func printSelf() {
+        print(self)
+    }
+}
+
+extension Int: SelfPrintable { }
+extension String: SelfPrintable { }
+extension Double: SelfPrintable { }
+
+
+1024.printSelf()
+3.14.printSelf()
+"haha".printSelf()
+123.printSelf()
