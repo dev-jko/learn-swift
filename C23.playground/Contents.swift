@@ -141,8 +141,8 @@ extension Insertable {
     }
 }
 
-struct Stack<Eelement>: Popable {
-    var items: [Eelement] = []
+struct Stack<Element>: Popable {
+    var items: [Element] = []
 }
 
 struct Queue<Element>: Insertable {
@@ -175,23 +175,71 @@ intQueue.printSelf()
 
 
 
+let items: [Int] = [1, 2, 3]
+let mappedItems: [Int] = items.map { $0 * 10 }
+print(mappedItems)
+
+extension Stack {
+    func map<T>(transform: (Element) -> T) -> Stack<T> {
+        var transformedStack: Stack<T> = Stack<T>()
+        
+        for item in items {
+            transformedStack.items.append(transform(item))
+        }
+        
+        return transformedStack
+    }
+}
+
+intStack.push(1)
+intStack.push(2)
+intStack.printSelf()
+var myStrStack: Stack<String> = intStack.map { "\($0)" }
+myStrStack.printSelf()
 
 
 
+let filteredItems: [Int] = items.filter{ $0 % 2 == 0 }
+print(filteredItems)
+
+extension Stack {
+    func filter(includeElement: (Element) -> Bool) -> Stack<Element> {
+        var filteredStack: Stack<Element> = Stack()
+        
+        for item in items {
+            if includeElement(item) {
+                filteredStack.items.append(item)
+            }
+        }
+        
+        return filteredStack
+    }
+}
+
+intStack.printSelf()
+let filteredStack: Stack<Int> = intStack.filter{ $0 < 5 }
+filteredStack.printSelf()
 
 
+let combinedItmes: Int = items.reduce(0) { $0 + $1 }
+print(combinedItmes)
 
+let combinedItemsString: String = items.reduce("") { "\($1) \($0)" }
+print(combinedItemsString)
 
+extension Stack {
+    func reduce<T>(_ initialResult: T, nextPartialResult: (T, Element) -> T) -> T {
+        var result: T = initialResult
+        
+        for item in items {
+            result = nextPartialResult(result, item)
+        }
+        
+        return result
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
+let combinedInt: Int = intStack.reduce(100) { $0 + $1 }
+intStack.printSelf()
+print(combinedInt)
 
