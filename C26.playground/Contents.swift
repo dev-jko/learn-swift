@@ -105,3 +105,105 @@ default:
     print(point.0, point.1)
 }
 
+
+
+protocol SelfPrintable {
+    func printSelf()
+}
+
+struct Person: SelfPrintable { }
+
+extension Int: SelfPrintable { }
+extension UInt: SelfPrintable { }
+extension String: SelfPrintable { }
+extension Double: SelfPrintable { }
+
+extension SelfPrintable where Self: FixedWidthInteger, Self: SignedInteger {
+    func printSelf() {
+        print("FixedWidthInteger와 SignedInteger를 준수하면서 SelfPrintable을 준수하는 타입 : \(type(of: self))")
+    }
+}
+
+extension SelfPrintable where Self: CustomStringConvertible {
+    func printSelf() {
+        print("CustomStringConvertible, SelfPrintable -> \(type(of: self))")
+    }
+}
+
+extension SelfPrintable {
+    func printSelf() {
+        print("그 외 SelfPrintable -> \(type(of: self))")
+    }
+}
+
+Int(-8).printSelf()
+UInt(8).printSelf()
+String("yagom").printSelf()
+Double(0.8).printSelf()
+Person().printSelf()
+
+
+
+func doubled<T>(integerValue: T) -> T where T: BinaryInteger {
+    return integerValue * 2
+}
+
+func doubled2<T: BinaryInteger>(integerValue: T) -> T {
+    return integerValue * 2
+}
+
+func prints<T, U>(first: T, second: U) where T: CustomStringConvertible, U: CustomStringConvertible {
+    print(first)
+    print(second)
+}
+
+func compareTwoSequences<S1, S2>(a: S1, b: S2) where S1: Sequence, S1.Element: Equatable, S2: Sequence, S2.Element: Equatable {
+    
+}
+
+func compareTwoSequences<S1, S2>(a: S1, b: S2) where S1: Sequence, S1.Element: Equatable, S2: Sequence, S1.Element == S2.Element {
+    
+}
+
+func compareTwoSequences2<S1: Sequence, S2: Sequence>(a: S1, b: S2) where S1.Element: Equatable, S1.Element == S2.Element {
+    
+}
+
+
+protocol Container {
+    associatedtype ItemType where ItemType: BinaryInteger
+    
+    var count: Int { get }
+    
+    mutating func append(item: ItemType)
+    subscript(i: Int) -> ItemType { get }
+}
+
+protocol Container2 where ItemType: BinaryInteger {
+    associatedtype ItemType
+    
+    var count: Int { get }
+    
+    mutating func append(item: ItemType)
+    subscript(i: Int) -> ItemType { get }
+}
+
+
+
+protocol Talkable { }
+protocol CallToAll {
+    func callToAll()
+}
+
+struct Person2: Talkable { }
+struct Animal { }
+
+extension Array: CallToAll where Element: Talkable {
+    func callToAll() { }
+}
+
+let people: [Person2] = []
+let cats: [Animal] = []
+
+people.callToAll()
+//cats.callToAll()  // error
