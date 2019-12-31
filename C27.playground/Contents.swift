@@ -40,3 +40,46 @@ func foo2() {
 }
 
 foo2()
+
+
+class Person2 {
+    let name: String
+    
+    var room: Room?
+    
+    init(name: String) {
+        self.name = name
+        print("Person2 \(name) is being initialized")
+    }
+    
+    deinit {
+        print("Person2 \(name) is being deinitialized")
+    }
+}
+
+class Room {
+    let number: String
+    
+    init(number: String) {
+        self.number = number
+    }
+    
+    var host: Person2?
+    
+    deinit {
+        print("Room \(self.number) is being deinitialized")
+    }
+}
+
+var yagom: Person2? = Person2(name: "yagom")
+var room: Room? = Room(number: "505")
+
+room?.host = yagom
+yagom?.room = room
+
+yagom = nil
+//room = nil
+
+room?.host = nil
+room = nil
+
