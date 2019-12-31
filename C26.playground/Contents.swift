@@ -51,3 +51,44 @@ let arrayOfOptionalInts: [Int?] = [nil, 2, 3, nil, 5]
 for case let number? in arrayOfOptionalInts where number > 2 {
     print("Found a \(number)")
 }
+
+
+
+let anyValue: Any = "ABC"
+
+switch anyValue {
+case let value where value is Int:
+    print("Int")
+case let value where value is String:
+    print("String")
+case let value where value is Double:
+    print("Double")
+default:
+    print("Unknown")
+}
+
+var things: [Any] = []
+things.append(0)
+things.append(0.0)
+things.append(42)
+things.append("Hello")
+things.append((1.0, 3))
+things.append({ (name: String) -> String in "Hello \(name)"})
+
+for thing in things {
+    switch thing {
+    case 0 as Int:
+        print("zero as an Int")
+    case 0 as Double:
+        print("zero as a Double")
+    case let someInt as Int:
+        print("int \(someInt)")
+    case let someDouble as Double where someDouble > 0:
+        print("a positive double \(someDouble)")
+    case let someString as String:
+        print("string \(someString)")
+    default:
+        print("something else")
+    }
+}
+
