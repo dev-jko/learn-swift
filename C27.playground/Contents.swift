@@ -125,3 +125,42 @@ yagom3 = nil
 print(room3?.host)
 
 room3 = nil
+
+
+
+class Person4 {
+    let name: String
+    
+    var card: CreditCard?
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("Person4 \(name) is being deinitialized")
+    }
+}
+
+class CreditCard {
+    let number: UInt
+    
+    unowned let owner: Person4
+    
+    init(number: UInt, owner: Person4) {
+        self.number = number
+        self.owner = owner
+    }
+    
+    deinit {
+        print("CreditCard \(number) is being deinitialized")
+    }
+}
+
+var jisoo: Person4? = Person4(name: "Jisoo")
+
+if let person: Person4 = jisoo {
+    person.card = CreditCard(number: 1004, owner: person)
+}
+
+jisoo = nil
