@@ -92,3 +92,16 @@ for thing in things {
     }
 }
 
+
+
+var point: (Int, Int) = (1, 2)
+
+switch point {
+case (0, 0):
+    print("원점")
+case (-2...2, -2...2) where point.0 != 1:
+    print("원점과 가깝습니다")
+default:
+    print(point.0, point.1)
+}
+
