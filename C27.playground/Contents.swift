@@ -83,3 +83,45 @@ yagom = nil
 room?.host = nil
 room = nil
 
+
+
+class Person3 {
+    let name: String
+    
+    var room: Room3?
+    
+    init(name: String) {
+        self.name = name
+        print("Person3 \(name) is being initialized")
+    }
+    
+    deinit {
+        print("Person3 \(name) is being deinitialized")
+    }
+}
+
+
+class Room3 {
+    let number: String
+    
+    init(number: String) {
+        self.number = number
+    }
+    
+    weak var host: Person3?
+    
+    deinit {
+        print("Room3 \(number) is being deinitialized")
+    }
+}
+
+var yagom3: Person3? = Person3(name: "yagom3")
+var room3: Room3? = Room3(number: "room3 505")
+
+room3?.host = yagom3
+yagom3?.room = room3
+
+yagom3 = nil
+print(room3?.host)
+
+room3 = nil
