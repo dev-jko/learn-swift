@@ -164,3 +164,37 @@ if let person: Person4 = jisoo {
 }
 
 jisoo = nil
+
+
+
+class Company {
+    let name: String
+    var ceo: CEO!
+    
+    init(name: String, ceoName: String) {
+        self.name = name
+        self.ceo = CEO(name: ceoName, company: self)
+    }
+    
+    func introduce() {
+        print("\(name)의 CEO \(ceo.name)")
+    }
+}
+
+class CEO {
+    let name: String
+    unowned let company: Company
+    
+    init(name: String, company: Company) {
+        self.name = name
+        self.company = company
+    }
+    
+    func introduce() {
+        print("\(name)은 \(company.name)의 CEO")
+    }
+}
+
+let company: Company = Company(name: "무한상사", ceoName: "김태호")
+company.introduce()
+company.ceo.introduce()
