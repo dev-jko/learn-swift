@@ -198,3 +198,36 @@ class CEO {
 let company: Company = Company(name: "무한상사", ceoName: "김태호")
 company.introduce()
 company.ceo.introduce()
+
+
+
+class Person5 {
+    let name: String
+    let hobby: String?
+    
+    lazy var introduce: () -> String = {
+        var introduction: String = "My name is \(self.name)"
+        
+        guard let hobby = self.hobby else {
+            return introduction
+        }
+        
+        introduction += " "
+        introduction += "My hobby is \(hobby)"
+        
+        return introduction
+    }
+    
+    init(name: String, hobby: String? = nil) {
+        self.name = name
+        self.hobby = hobby
+    }
+    
+    deinit {
+        print("Person5 \(name) is being deinitialized")
+    }
+}
+
+var yagom5: Person5? = Person5(name: "yagom5", hobby: "eating")
+print(yagom5?.introduce())
+yagom5 = nil
