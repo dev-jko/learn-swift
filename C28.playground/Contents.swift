@@ -227,3 +227,73 @@ class SomeChildClass: SomeClass {
 //    override func someFunction(callback: () throws -> Void) throws { }  // error
     override func someFunction(callback: () throws -> Void) rethrows { }
 }
+
+
+
+for i in 0...2 {
+    defer {
+        print("A", terminator: " ")
+    }
+    print(i, terminator: " ")
+    
+    if i % 2 == 0 {
+        defer {
+            print("", terminator: "\n")
+        }
+        
+        print("It's even", terminator: " ")
+    }
+}
+
+
+func someThrowingFunction3(shouldThrowError: Bool) throws -> Int {
+    defer {
+        print("First")
+    }
+    
+    if shouldThrowError {
+        enum SomeError: Error {
+            case justSomeError
+        }
+        
+        throw SomeError.justSomeError
+    }
+    
+    defer {
+        print("Second")
+    }
+    
+    defer {
+        print("Third")
+    }
+    
+    return 100
+}
+
+try? someThrowingFunction3(shouldThrowError: true)
+try? someThrowingFunction3(shouldThrowError: false)
+
+
+func someFunction3() {
+    print(1)
+    
+    defer {
+        print(2)
+    }
+    
+    do {
+        defer {
+            print(3)
+        }
+        
+        print(4)
+    }
+    
+    defer {
+        print(5)
+    }
+    
+    print(6)
+}
+
+someFunction3()
