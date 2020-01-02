@@ -156,3 +156,74 @@ func fetchDataFromDisk() throws -> String {
 func fetchDataFromServer() throws -> String {
     return "my string data from server"
 }
+
+
+
+let y2: Int = try! someThrowingFunction(shouldThrowError: false)
+print(y2)
+//let x2: Int = try! someThrowingFunction(shouldThrowError: true)  // error
+
+
+
+func someThrowingFunction() throws {
+    enum SomeError: Error {
+        case justSomeError
+    }
+    
+    throw SomeError.justSomeError
+}
+
+func someFunction(callback: () throws -> Void) rethrows {
+    try callback()
+}
+
+do {
+    try someFunction(callback: someThrowingFunction)
+} catch {
+    print(error)
+}
+
+
+func someFunction2(callback: () throws -> Void) rethrows {
+    enum AnotherError: Error {
+        case justAnotherError
+    }
+    
+    do {
+        try callback()
+    } catch {
+        throw AnotherError.justAnotherError
+    }
+    
+    do {
+        try someThrowingFunction()
+    } catch {
+//        throw AnotherError.justAnotherError // error
+    }
+    
+//    throw AnotherError.justAnotherError  // error
+}
+
+
+
+protocol SomeProtocol {
+    func someThrowingFunctionFromProtocol(callback: () throws -> Void) throws
+    func someRethrowingFunctionFromProtocol(callback: () throws -> Void) rethrows
+}
+
+class SomeClass: SomeProtocol {
+    func someThrowingFunction(callback: () throws -> Void) throws { }
+    func someFunction(callback: () throws -> Void) rethrows { }
+    
+    func someThrowingFunctionFromProtocol(callback: () throws -> Void) rethrows { }
+    
+//    func someRethrowingFunctionFromProtocol(callback: () throws -> Void) throws { }  // error
+    func someRethrowingFunctionFromProtocol(callback: () throws -> Void) rethrows { }
+}
+
+class SomeChildClass: SomeClass {
+    override func someThrowingFunction(callback: () throws -> Void) rethrows { }
+    
+//    override func someFunction(callback: () throws -> Void) throws { }  // error
+    override func someFunction(callback: () throws -> Void) rethrows { }
+}
