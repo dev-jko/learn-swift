@@ -117,3 +117,42 @@ for (person, snack) in favoriteSnacks {
     print(person, snack)
     tryingVend(itemNamed: snack, vendingMachine: machine)
 }
+
+
+func someThrowingFunction(shouldThrowError: Bool) throws -> Int {
+    if shouldThrowError {
+        enum SomeError: Error {
+            case justSomeError
+        }
+        
+        throw SomeError.justSomeError
+    }
+    
+    return 100
+}
+
+let x: Optional = try? someThrowingFunction(shouldThrowError: true)
+print(x)
+let y = try? someThrowingFunction(shouldThrowError: false)
+print(y)
+
+
+func fetchData() -> String? {
+    if let data = try? fetchDataFromDisk() {
+        return data
+    }
+    
+    if let data = try? fetchDataFromServer() {
+        return data
+    }
+    
+    return nil
+}
+
+func fetchDataFromDisk() throws -> String {
+    return "my string data from disk"
+}
+
+func fetchDataFromServer() throws -> String {
+    return "my string data from server"
+}
