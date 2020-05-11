@@ -40,3 +40,13 @@ print("\n\n")
 
 print("non escaping")
 nonEscapingClosure(myFunc)
+
+
+for i in 0...100 {
+    let str: String = String.init(repeating: "=", count: i / 5) + ">" + String.init(repeating: " ", count: 20 - i / 5)
+    sleep(1)
+    print("[\(str)]\r", terminator: "")
+    fflush(__stdoutp)
+}
+print()
+print("a\nb\rc")
